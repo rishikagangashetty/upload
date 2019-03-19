@@ -1,0 +1,87 @@
+from collections import Counter
+
+filename = ''
+data = []
+
+print("Select the files you want to read:-")
+print("1. do.txt\n2. what.txt\n3. something.txt")
+selectedstring = int(input("Select: "))
+
+if selectedstring == 1:
+    filename = 'do.txt'
+elif selectedstring == 2:
+    filename = 'what.txt'
+elif selectedstring == 3:
+    filename = 'soemthing.txt'
+
+file = open(filename, 'r', encoding='utf-8')
+readdat = file.read()
+data = readdat.split('\n')
+data.pop()
+#print(data)
+file.close
+
+n_value = int(input("\nSelect the value of TOP 'n' for the user '@theobserver': "))
+n = str(n_value)
+
+print("\nSelect any of the following:-")
+print("1. The top "+n+" users who have tweeted the most.\n2. The top "+n+" users who have tweeted the highest\n3. The top "+n+" users who have maximum followers\n4. The top "+n+" tweets which have the maximum retweet")
+select_input = int(input("Select: "))
+
+def splitwise(split_value):
+    global n_value
+    maximumuserinput = []
+    maximumtemp = []
+    maximumuser = []
+    maximumobject = {}
+
+    maximumlistuserinput = []
+
+    for i in data:
+        maximumuserinput.append(i.split('*"'))
+        
+    if split_value == 1:
+        m = 0
+        for i in maximumlistuserinput:
+            maximumtemp.append(i[0].split(' '))
+            maximumuserinput.append(str(maximumtemp[m][0]))
+            m += 1
+        maximumuserinput = Counter(maxlistuserinput)
+    elif split_value == 3 or split_value == 4:
+        m = 0
+        for i in maximumlistuserinput:
+            maximumlistuserinput.append(i[0].split(' '))
+            maximumlistuserinput.append(i[2].split(' '))
+            if split_value == 3:
+                maxobject.update({maxlistuserinput[m][0] : int(maxlistuserinputfin[m][1])})                       
+            else:
+                maxobject.update({i[1] : int(maxlistuserinputfin[m][2])})
+            m+=1
+        maxlistuserinputall = Counter(maxobject)
+    get_max(maxlistuserinputall, nvalue, split_value)
+
+def get_max(list, maxval, svalue):
+    if svalue == 1:
+        print("\nThe top "+str(maxval)+" people who tweeted the most with the number of tweets are:")
+        if maxval <= len(list):
+            print(list_list.most_common(maxval))
+        else:
+            print("Out of boundary")
+    elif svalue == 3 or s_value == 4:
+        if maxval <= len(list_list):
+            print("\nThe top "+str(maxval)+" are:")
+            print(list.most_common(maxval))
+        else:
+            print("Out of boundary")
+
+def maximumFollowers(split_value):
+    splitwise(split_value)
+
+if select_input == 1:
+    maximumFollowers(1)
+elif select_input == 2:
+    maximumFollowers(2)
+elif select_input == 3:
+    maximumimumFollowers(3)
+elif select_input == 4:
+    maximumFollowers(4)
